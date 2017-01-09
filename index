@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>总结</title>
+		<style>
+			h1{
+				text-align: center;
+				color: #333;
+			}
+			a{
+				text-decoration: none;
+				color: #333;
+			}
+			a:hover{
+				color: #c44f00;
+			}
+			p{
+				margin-left:45% ;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>李然然总结</h1>
+		<p><a href="20170109.html">20170109工具使用总结</a></p>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>20170112(获取验证码)</title>
+		<style>
+			button{
+				margin:0 auto;
+				width:140px;
+				height: 50px;
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<button>获取验证码</button>
+		<script>
+		    var waitTime=5;
+		    var timer;
+			var btn=document.getElementsByTagName('button')[0];
+			//W3C推荐写法
+			btn.addEventListener('click',clickHandler,false);
+			function clickHandler(){	
+				btn.disabled=true;
+				btn.innerText=waitTime+'秒后再获取';
+				timer=setInterval(function(){
+					waitTime -=1;
+				btn.innerText=waitTime+'秒后再获取';
+					if(waitTime<=0){
+						btn.disabled=false;
+						btn.innerText='获取验证码';
+						waitTime=5;
+						clearInterval(timer);
+					}
+				}
+				,1000);
+			}
+			/*btn.onclick=function(){
+				btn.disabled=true;	
+				btn.innerText=waitTime+'秒后再获取';
+				timer=setInterval(function(){					
+				    waitTime-=1;
+				    btn.innerText=waitTime+'秒后再获取';
+					    if(waitTime<0){
+					    	btn.disabled=false;
+					    	btn.innerText='获取验证码';
+					    	clearInterval(timer);
+					    	waitTime=5;
+					    }
+				},1000);
+			}*/
+		</script>
+	</body>
+</html>

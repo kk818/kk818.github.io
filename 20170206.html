@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>AJAX总结</title>
+		<link rel="stylesheet" type="text/css" href="css/1.css"/>
+	</head>
+	<body>
+		<h1>AJAX </h1>
+			<li>AJAX</li>
+			<li>JSON,HTTP状态码</li>
+			<li>设计模式</li>
+		<br>
+		<div>
+			<b>一、AJAX</b>
+			
+				<h4>（一）什么是AJAX</h4>
+			<span>
+				AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+				<br>
+				AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+				<br>
+				AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+				<br>
+				AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
+			</span>
+			
+				<h4>（二）简介</h4>
+			<span>
+				AJAX 是一种用于创建快速动态网页的技术。
+				<br>
+				通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+				<br>
+				传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。
+				<br>
+				使用 AJAX 的应用程序案例：新浪微博、Google 地图等等。
+			</span>
+			
+				<h4>（三）相关知识</h4>
+			<span>
+				AJAX是基于现有的Internet标准，并且联合使用它们：
+				<br>
+			    1.XMLHttpRequest 对象 (异步的与服务器交换数据)<br>
+			    2.JavaScript/DOM (信息显示/交互)<br>
+			    3.CSS (给数据定义样式)<br>
+			    4.XML (作为转换数据的格式,不唯一,可用多种文件格式JSON,HTML,TXT,JS等)<br>
+			</span>
+				<h4>（四）核心代码</h4>
+			<span>
+				<pre>
+				var xhr;
+				if(window.XMLHttpRequest){
+					xhr=new XMLHttpRequest();
+				}else{
+					xhr=new ActiveXObject("Microsoft.XMLHTTP");
+					//兼容老版本Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：
+				}
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						console.log(xhr.response);
+					}
+				}
+				xhr.open("GET/POST","http://www.example.com/test.php",true);
+				//获取用GET，提交用POST
+				xhr.send();
+				</pre>				
+			</span>
+				<h4>（五）AJAX XHR</h4>
+			<span>
+				1.创建XMLHttpRequest对象
+				XMLHttpRequest 是 AJAX 的基础。<br>
+				所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。
+				XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+				创建XMLHttpRequest对象
+				<pre>
+					variable=new XMLHttpRequest();
+					variable=new ActiveXObject("Microsoft.XMLHTTP");//(IE5 和 IE6)
+				</pre>
+			</span>
+			<span>
+				2.发送请求<br>
+				使用 XMLHttpRequest 对象的 open() 和 send() 方法
+				<table border="1px" cellspacing="0" cellpadding="0">
+					<tr><th>方法</th><th>描述</th></tr>
+					<tr>
+						<td>open(method,url,async)</td>
+						<td>method:请求的类型，GET或POST<br>
+							url:文件在服务器上的位置<br>
+							async:true(异步)或false(同步)
+						</td>						
+					</tr>
+					<tr>
+						<td>send(tring)</td>
+						<td>将请求发送到服务器<br>
+						string:仅用于POST请求
+						</td>
+					</tr>
+				</table>
+				用GET还是POST方法？<br>
+				与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br>
+				在以下情况中，请使用 POST 请求：<br>			
+				    无法使用缓存文件（更新服务器上的文件或数据库）<br>
+				    向服务器发送大量数据（POST 没有数据量限制）<br>
+				    发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠<br>
+			  	 <b>一个简单的分法：获取用GET，提交用POST，但都不安全</b>
+			  	 Async = true<br>
+			  	 AJAX 指的是异步 JavaScript 和 XML（Asynchronous adj:异步的；不同时的；不同期的）。
+				 XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true<br>
+				 对于 web 开发人员来说，发送异步请求是一个巨大的进步。很多在服务器执行的任务都相当费时。AJAX 出现之前，这可能会引起应用程序挂起或停止。<br>
+				 通过 AJAX，JavaScript 无需等待服务器的响应，而是：<br>
+				 在等待服务器响应时执行其他脚本,<br>当响应就绪后对响应进行处理
+			</span>
+			
+			<span>
+				3.响应<br>
+			如需获得来自服务器的响应，使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。
+			<table border="1px" cellspacing="0" cellpadding="0">
+				<tr><th>属性</th><th>描述</th></tr>
+				<tr><td>responseText</td>
+					<td>获得字符串形式的响应数据</td>
+				</tr>
+				<tr><td>responseXML</td>
+					<td>获得XML形式的响应数据</td>
+				</tr>
+			</table>
+			如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性
+			<pre>
+				xmlDoc=xmlhttp.responseXML;
+				txt="";
+				x=xmlDoc.getElementsByTagName("ARTIST");
+				for (i=0;i<x.length;i++)
+				  {
+				  txt=txt + x[i].childNodes[0].nodeValue + "<br />";
+				  }
+				document.getElementById("myDiv").innerHTML=txt;
+			</pre>
+			<br>
+			XML文件格式：<br>			
+			<img padding="5px" src="img/XML.png"><br>
+			<b>了解一下XML</b><br>
+			XML可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。<br>
+			它被设计用来传输和存储数据<br>
+			它的设计宗旨是传输数据，而不是显示数据。<br>
+			它的标签没有被预定义，需要自行定义标签。<br>
+			它被设计为具有自我描述性。<br>
+			它是W3C的推荐标准。<br>
+			<b>它和超文本标记语言语法区别：</b>			
+			<br>
+			超文本标记语言的标记不是所有的都需要成对出现，它则要求所有的标记必须成对出现；<br>
+			HTML标记不区分大小写，它则大小敏感，即区分大小写。
+			</span>
+			<span>
+				4.onreadystatechange 事件<br>
+				当请求被发送到服务器时，我们需要执行一些基于响应的任务。<br>
+				每当 readyState 改变时，就会触发 onreadystatechange 事件。<br>				
+				readyState 属性存有 XMLHttpRequest 的状态信息。<br>				
+				下面是 XMLHttpRequest 对象的三个重要的属性：<br>
+				<img src="img/readystate.png"/><br>
+				在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。<br>
+				当 readyState 等于 4 且状态status为 200 时，表示响应已就绪：
+				<pre>
+					xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						console.log(xhr.response);
+					}
+				}
+				</pre>
+			</span>
+						
+			<b>二、JSON,HTTP状态码</b>
+				<h4>（一）JSON</h4>
+			<span>
+				JSON：JavaScript 对象表示法（JavaScript Object Notation）。<br>		
+				JSON 是存储和交换文本信息的语法。类似 XML。<br>		
+				JSON 比 XML 更小、更快，更易解析。<br>	
+			</span>
+				<h4>（二）HTTP状态码</h4>
+			<span>
+				HTTP状态码：<br>
+				1开头：消息，这一类型的状态码，代表请求已被接受，需要继续处理。<br>
+				2开头：成功，代表请求已成功被服务器接收、理解、并接受 200：OK<br>
+				3开头：重定向，这类状态码代表需要客户端采取进一步的操作才能完成请求<br>
+				4开头：请求错误，客户端看起来可能发生了错误，妨碍了服务器的处理 404：请求所希望得到的资源未被在服务器上发现<br>
+				5、6：服务器错误 500：服务器端源代码出现错误 505：服务器不支持请求中的HTTP版本<br>
+			</span>
+			
+			<b>三、设计模式</b>
+				<h4>工厂模式</h4>
+			<span>
+				<img src="img/工厂模式.png"/>
+			</span>
+			<span>
+				Java开发常用的23种设计模式
+				<a href="http://www.cnblogs.com/maowang1991/archive/2013/04/15/3023236.html">参考阅读</a>
+			</span>
+		</div>
+		
+	</body>
+</html>

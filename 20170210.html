@@ -4,99 +4,22 @@
 		<meta charset="UTF-8">
 		<title>jQuery Animation</title>
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				width:100%;
+			}
+		</style>
 	</head>
+	
 	<body>
+		<img src="img/20170210-1.png"/>
+		<img src="img/20170210-2.png"/>
+		<img src="img/20170210-3.png"/>
+		<img src="img/20170210-4.png"/>
 	</body>
-	<xmp theme="united" style="display:none;">
-@(jQuery)[Animation]
-**Animation**
-- **显示/隐藏**:show， hide， toggle
-- **滑动**：slideDown，slideUp，slideToggle
-- **淡入淡出**：fadeIn， fadeOut， fadeToggle， fadeTo 
-- **自定义**：animate，stop，delay
 
--------------------
-
-####显示/隐藏
-1. show( ): 显示
-``` javascript
-$("#btn").click(function(){
-		$("div").show()
-		})
-```
-2. hide( ): 隐藏
-``` javascript
-$("#btn").click(function(){
-		$("div").hide()
-		})
-```
-3. toggle( ): 显示/隐藏切换
-``` javascript
-$("#btn").click(function(){
-		$("div").toggle()
-		})
-```
-####滑动
-1. slideDown( ): 动画效果，只调整元素的高度，可以使匹配的元素以“滑动”的方式（向下增大）显示出来
-``` javascript
-$("#btn").click(function(){
-		$("img").slideDown()
-		})
-```
-2. slideUp( ): 动画效果，通过高度变化，使匹配的元素以“滑动”的方式（向上减小）隐藏起来
-``` javascript
-$("#btn").click(function(){
-		$("img").slideUp()
-		})
-```
-3. slideToggle( ): 动画效果，切换匹配元素的可见性
-``` javascript
-$("#btn").click(function(){
-		$("img").slideToggle()
-		})
-```
-####淡入淡出
-1. fadeIn( ):  通过不透明度的变化来实现所有匹配元素的淡入效果，即显示
-``` javascript
-$("#btn").click(function(){
-		$("img").fadeIn()
-		})
-```
-2. fadeOut( ):  通过不透明度的变化来实现所有匹配元素的淡出效果，即隐藏
-``` javascript
-$("#btn").click(function(){
-		$("img").fadeOut()
-		})
-```
-3. fadeToggle( ): 开关所匹配元素的淡入和淡出效果
-```javascript
-$("#btn").click(function(){
-		$("img").fadeToggle()
-		})
-```
-`注意`
-	以上方法 show， hide， toggle，slideDown，slideUp，slideToggle，fadeIn， fadeOut， fadeToggle 可以传三个参数 `show([speed],[easing],[fn])`
-|参数      |描述                                                                 |
-| :------: | :-------------------------------------------------------------------|
-|**peed** |三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)|
-|**easing**|(Optional) 用来指定切换效果，默认是"swing"，可用参数"linear"|
-|**fn**    |在动画完成时执行的函数，每个元素执行一次。|
-```javascrpt
-$("#btn").click(function(){
-		$("img").fadeOut("fast","linear",function(){
-		   console.log("Animation Done.");
-		})
-```
-4. fadeTo( ) : 把所有匹配元素的不透明度以渐进方式调整到指定的不透明度
-`show([speed],opacity,[easing],[fn])`
- 多一个参数 `opacity` ：指定的不透明度
-```javascript
-$("#btn").click(function(){
-		$("img").fadeTo("fast", 0.25,"linear",function(){
-		   console.log("Animation Done.");
-		})
-```
-
-</xmp>
-<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
 </html>
